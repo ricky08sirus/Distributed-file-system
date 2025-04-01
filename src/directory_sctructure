@@ -1,0 +1,59 @@
+dfs_project/
+│── src/                      # Source code directory
+│   │── master/               # Master Node implementation
+│   │   │── master.c          # Main Master Node logic
+│   │   │── metadata.c        # Manages file metadata
+│   │   │── metadata.h        # Header file for metadata handling
+│   │   │── replication.c     # Chunk replication logic
+│   │   │── replication.h     # Header for replication logic
+│   │   └── master.h          # Header for master node logic
+│   │
+│   │── data_node/            # Data Node implementation
+│   │   │── data_node.c       # Data Node logic
+│   │   │── storage.c         # Handles file chunk storage
+│   │   │── storage.h         # Header file for storage operations
+│   │   └── data_node.h       # Header for data node logic
+│   │
+│   │── client/               # Client-side implementation
+│   │   │── client.c          # Client operations (read/write requests)
+│   │   │── client.h          # Header for client-side logic
+│   │
+│   │── network/              # Networking module
+│   │   │── network.c         # Handles communication between nodes
+│   │   │── network.h         # Header for network operations
+│   │
+│   │── utils/                # Utility functions
+│   │   │── logger.c          # Logging utility
+│   │   │── logger.h          # Header for logging
+│   │   │── config.c          # Configurations (port numbers, chunk size)
+│   │   │── config.h          # Header for configuration handling
+│   │
+│   └── main.c                # Main entry point (optional)
+│
+│── storage/                  # Directory for storing file chunks (Data Nodes)
+│   │── node1/                # Storage for Data Node 1
+│   │── node2/                # Storage for Data Node 2
+│
+│── metadata/                 # Directory for storing metadata (Master Node)
+│   └── file_metadata.db       # Stores file-to-chunk mapping
+│
+│── config/                   # Configuration files
+│   │── dfs_config.ini         # General configuration settings
+│   │── nodes_config.ini       # Node-specific configurations
+│
+│── scripts/                  # Shell scripts for setup, testing, deployment
+│   │── start_master.sh        # Start Master Node
+│   │── start_data_nodes.sh    # Start all Data Nodes
+│   │── run_client.sh          # Start a client
+│
+│── tests/                    # Test cases for each module
+│   │── test_master.c          # Tests for Master Node
+│   │── test_data_node.c       # Tests for Data Node
+│   │── test_client.c          # Tests for Client operations
+│
+│── docs/                     # Documentation (architecture, UML diagrams)
+│   └── design.pdf             # System design document
+│
+│── Makefile                   # Makefile for building the project
+└── README.md                  # Project documentation
+
