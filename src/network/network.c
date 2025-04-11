@@ -100,3 +100,37 @@ int receive_file(const char *filename, int listen_port){
 
 
 }
+
+int initialize_server(int port) {
+    int server_fd;
+    struct sockaddr_in server_addr;
+
+    // Create socket
+    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
+        perror("Socket creation failed");
+        return -1;
+    }
+
+    // Configure server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = INADDR_ANY; // Listen on all interfaces
+    server_addr.sin_port = htons(port);
+
+    // Bind the socket to the port
+    if (bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
+        perror("Bind failed");
+        close(server_fd);
+        return -1;
+    }
+
+    // Start listening
+    if (listen(server_fd, MAX_CONNECTIONS) < 0) {
+        perror("Listen failed");
+        close(server_fd);
+        return -1;
+    }
+
+    printf("Server initialized and listening on port %d\n", port);
+    return server_fd; // Return the listening socket descriptor
+}
+
