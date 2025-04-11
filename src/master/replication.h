@@ -1,12 +1,27 @@
-#ifndef REPLICATION_H
+#ifndef  REPLICATION_H
 #define REPLICATION_H
 
-#define REPLICATION_FACTOR 2  //number of replicas per file 
+#include <stdio.h>
 
-//fucntion to replicate field to multiple datanodes
-void replicate_file(const char *filename, const char *source_node, const char **replica_nodes, int num_nodes);
+//constants
+//
+#define REPLICATION_COUNT 2
+#define MAX_NODES 10 
 
-// Function to send a file from one node to another
-int send_file_to_node(const char *filename, const char *source_node, const char *target_node);
+//structure to hold the replication info 
+//
+typedef struct {
+  char node_ips[REPLICATION_COUNT][50];
+  int node_ports[REPLICATION_COUNT];
+} ReplicationInfo;
+
+
+
+// Function Declarations
+void replicate_file(const char *filename, const char *source_node_ip, int source_node_port);
+ReplicationInfo get_replication_targets();
 
 #endif // REPLICATION_H
+
+
+
